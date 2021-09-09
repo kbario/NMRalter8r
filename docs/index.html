@@ -63,8 +63,8 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#nmralter8r" class="anchor"></a>NMRalter8r</h1></div>
 <!-- badges: start -->
+<p>NMRalter8r began as part of my honours project where I was trying to remove the effects of dilution in NMR spectra, especially in urine. Urine concentrations are highly variable based on a number of factors such as food and water intake, lifestyle and behaviour, and this variation interferes with the multivariate statistics used to analyse NMR spectra. Therefore the goal of NMRalter8r is to calculate the signal to noise of the spectra and aim to make this constant across all samples acquired which would remove dilution effects. This is achieved through automating the NMR and calculating on the fly the number of scans needed to remove the effects of dilution.</p>
 <!-- badges: end -->
-<p>NMRalter8r was began during my honours projuct where I was trying to remove the effects of dilution in NMR urine spectra. Urine concentrations are highly variable based on a number of factors such as food and water intake, lifestyle and behaviour and this variation interferes with the multivariate statistics used to analyse NMR spectra. Therefore the goal of NMRalter8r is to calculate the signal to noise of the spectra and aim to make this constant across all samples acquired. This is achieved through automation of the NMR and on the fly calculations between an experiment with a small number of scans and an experiment with the altered number of scans.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -73,7 +73,7 @@
 <!--install.packages("NMRalter8r")-->
 <!--```-->
 <!--And-->
-<p>To installthe development version of NMRalter8r, use the code below to access it from <a href="https://github.com/">GitHub</a>:</p>
+<p>Currently NMRalter8r is only available on <a href="https://github.com/">GitHub</a>. The code to install can be seen below</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"kylebario/NMRalter8r"</span><span class="op">)</span></code></pre></div>
@@ -89,17 +89,51 @@
 <span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"topleft"</span>, legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Non-Processed"</span>, <span class="st">"Processed"</span><span class="op">)</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="fu"><a href="reference/pproc.html">pproc</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">p</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="va">p</span>,<span class="va">x</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">'l'</span>, col<span class="op">=</span><span class="st">'blue'</span><span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-example-1.png" width="100%"></p>
+<p><img src="reference/figures/README-unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">cr</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/crea.html">crea</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">p</span>, <span class="va">n</span>, c3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">3.1</span><span class="op">)</span>, c4 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">4.1</span><span class="op">)</span><span class="op">)</span>
 <span class="va">ans</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/alter8r.html">alter8r</a></span><span class="op">(</span>sig <span class="op">=</span> <span class="va">cr</span>, noi <span class="op">=</span> <span class="va">n</span>, goal <span class="op">=</span> <span class="fl">40000</span>, ns <span class="op">=</span> <span class="va">m</span><span class="op">$</span><span class="va">a_NS</span>, r2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">512</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="va">ans</span><span class="op">)</span>
 <span class="co">#&gt; 8</span></code></pre></div>
+<div id="readin" class="section level3">
+<h3 class="hasAnchor">
+<a href="#readin" class="anchor"></a>readin</h3>
+<p>As you an see, the <code><a href="reference/readin.html">readin()</a></code> function reads in the NMR spectrum (red) from the specified path.</p>
+</div>
+<div id="pproc" class="section level3">
+<h3 class="hasAnchor">
+<a href="#pproc" class="anchor"></a>pproc</h3>
+<p>The <code><a href="reference/pproc.html">pproc()</a></code> function then performs multiple changes to the red spectrum to create the blue spectrum.</p>
+<ol>
+<li>First it calibrates the spectrum to the TSP signal (hence why the blue spectrum is slightly shift to the left).<br>
+</li>
+<li>Then it removes the lower, water, urea and upper regions of the spectra (hence why the red spectrum is longer and has those extra peaks between 4 and 6) that do not mean anything to the analysis.<br>
+</li>
+<li>Thirdly, a baseline correction is performed to remove signals from large molecules that we do not want to look at.<br>
+</li>
+<li>Finally, a noise estimation is calculated for further use in the <code><a href="reference/alter8r.html">alter8r()</a></code> function as well as others.<br><!-- end of list --><br>
+This follows the standard pipeline for processing NMR spectra and lays the foundation for robust anaylsis.</li>
+</ol>
+</div>
+<div id="crea" class="section level3">
+<h3 class="hasAnchor">
+<a href="#crea" class="anchor"></a>crea</h3>
+<p>The <code><a href="reference/crea.html">crea()</a></code> function then estimates the height of the creatinine peak within the spectrum to gauge what the signal is.</p>
+</div>
+<div id="alter8r" class="section level3">
+<h3 class="hasAnchor">
+<a href="#alter8r" class="anchor"></a>alter8r</h3>
+<p><code><a href="reference/alter8r.html">alter8r()</a></code> is the keystone function of NMRalter8r (as the name suggests). This function calculates the necessary number of scans need to be performed on a sample to make it have the set signal to noise. The function relies on the square root relationship between signal to noise and the number of scans performed by the NMR.</p>
+</div>
 </div>
 <div id="features" class="section level2">
 <h2 class="hasAnchor">
 <a href="#features" class="anchor"></a>Features</h2>
-<p>NMRalter8r is equipped with a range of preprocessing tools. A common problem with NMR spectra acquired with a small number of scans is that the processing done by Topspin will flip them the wrong way because the water peak is so much larger than the other peaks. NMRalter8r contains a function that checks and corrects for this:</p>
+<p>NMRalter8r is equipped with a range of preprocessing tools designed to overcome a number of issues that commonly occur when working with NMR data.</p>
+<div id="flip" class="section level3">
+<h3 class="hasAnchor">
+<a href="#flip" class="anchor"></a>Flip</h3>
+<p>A common problem with NMR spectra acquired with a small number of scans is that the processing done by Topspin will flip them the wrong way because the water peak is so much larger than the other peaks. NMRalter8r contains a function – <code>flip()</code> – that checks and corrects for this:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">NMRalter8r</span><span class="op">)</span>
 <span class="fu"><a href="reference/readin.html">readin</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">'extdata/4'</span>, package <span class="op">=</span> <span class="st">'NMRalter8r'</span><span class="op">)</span><span class="op">)</span>
@@ -107,7 +141,9 @@
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">p</span>, <span class="va">x</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">'l'</span>, col<span class="op">=</span><span class="st">'red'</span>, main <span class="op">=</span> <span class="st">"Disorientated NMR Spectrum"</span>, xlab <span class="op">=</span> <span class="st">'Chemical Shift (ppm)'</span>, ylab <span class="op">=</span> <span class="st">'Intensity'</span><span class="op">)</span>
 <span class="va">xf</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/flip_.html">flip_</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">p</span>, sh <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">3.1</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">p</span>, <span class="va">xf</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">'l'</span>, col<span class="op">=</span><span class="st">'blue'</span>, main <span class="op">=</span> <span class="st">"Orientated NMR Spectrum"</span>, xlab <span class="op">=</span> <span class="st">'Chemical Shift (ppm)'</span>, ylab <span class="op">=</span> <span class="st">'Intensity'</span><span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-flip-1.png" width="100%"></p>
+<p><img src="reference/figures/README-unnamed-chunk-3-1.png" width="100%"></p>
+<p><code>flip()</code> works by multiplying all values within the spectrum by -1 to reorientate it based on whether or not the creatinine peak (or whatever peak is between the supply values in the sh argument) has a positive or negative sum</p>
+</div>
 </div>
 </div>
   </div>
