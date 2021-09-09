@@ -10,6 +10,7 @@
 #' @author Torben Kimhofer \email{torben.kimhofer@@murdoch.edu.au}
 #' @return An array containing the indexes between the lower and upper bounds
 #' @export
+#' @family {estimation}
 #'
 #' @author Kyle Bario \email{kylebario1@@gmail.com}
 #'

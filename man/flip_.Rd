@@ -27,6 +27,14 @@ It then determines if the sum of this area has a positive or negative sign (indi
 readin(path = system.file('extdata/15', package = 'NMRadjustr'))
 xf <- flip_(x, p, sh = c(3,3.1))
 }
+\seealso{
+Other {preproc}: 
+\code{\link{bl_}()},
+\code{\link{cali}()},
+\code{\link{pproc}()},
+\code{\link{readin}()}
+}
 \author{
 Kyle Bario \email{kylebario1@gmail.com}
 }
+\concept{{preproc}}

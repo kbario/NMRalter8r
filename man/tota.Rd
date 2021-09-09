@@ -30,6 +30,17 @@ Finally the remaining values are summed and is the value returned by the functio
 data(x,p,n)
 ta <- tota(x, p, n)
 }
+\seealso{
+Other {estimation}: 
+\code{\link{alter8r}()},
+\code{\link{citra}()},
+\code{\link{crea}()},
+\code{\link{get_idx}()},
+\code{\link{noi_}()},
+\code{\link{roundr}()},
+\code{\link{shift_pickr}()}
+}
 \author{
 Kyle Bario \email{kylebario1@gmail.com}
 }
+\concept{{estimation}}

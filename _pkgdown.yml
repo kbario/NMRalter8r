@@ -1,0 +1,9 @@
+reference:
+- title: Preprocessing Functions
+  desc: The streamlining function the combines all data manipulation and estimation functions into one
+- contents:
+  - has_concept('preproc')
+- title: Estimation Functions
+  desc: Functions used to estimate properties of the spectra such as area of peaks and number of scans
+- contents:
+  - has_concept('estimation')

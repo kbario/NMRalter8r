@@ -13,7 +13,7 @@
 #'
 #' @return The number of scans (rounded based on the input arguments from r2) necessary to achieve the goal signal to noise
 #' @export
-#'
+#' @family {estimation}
 #' @author Kyle Bario \email{kylebario1@@gmail.com}
 #'
 #' @examples

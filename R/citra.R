@@ -12,7 +12,7 @@
 #'
 #' @return An estimated value of the citrate area
 #' @export
-#'
+#' @family {estimation}
 #' @author Kyle Bario \email{kylebario1@@gmail.com}
 #'
 #' @examples

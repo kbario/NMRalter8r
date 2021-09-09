@@ -12,6 +12,7 @@
 #' @return an estimation of noise level of the provided x spectrum
 #' @importFrom stats sd
 #' @export
+#' @family {estimation}
 #'
 #' @author Kyle Bario \email{kylebario1@@gmail.com}
 #'

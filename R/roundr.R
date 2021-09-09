@@ -14,7 +14,7 @@
 #'
 #' @return A integer rounded to the nearest multiple of the third element in r2
 #' @export
-#'
+#' @family {estimation}
 #' @author Kyle Bario \email{kylebario1@@gmail.com}
 #'
 #' @examples

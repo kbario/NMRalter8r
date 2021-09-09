@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adjusts the Number of Scans an NMR Performs Based on the Concentration of a Sample • NMRadjustr</title>
+<title>Adjusts the Number of Scans an NMR Performs Based on the Concentration of a Sample • NMRalter8r</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
@@ -30,7 +30,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">NMRadjustr</a>
+        <a class="navbar-link" href="index.html">NMRalter8r</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
       </span>
     </div>
@@ -59,44 +59,55 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="nmradjustr" class="section level1">
+<div id="nmralter8r" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#nmradjustr" class="anchor"></a>NMRadjustr</h1></div>
+<a href="#nmralter8r" class="anchor"></a>NMRalter8r</h1></div>
 <!-- badges: start -->
 <!-- badges: end -->
-<p>The goal of NMRadjustr is to allow acquisition of almost completely normalised NMR spectra straight of the spectroscope. By adjusting the number of scans based on the sample concentration, you can reduce the influence noise has on the data analysis later on down the pipeline which creates more robust and accurate results</p>
+<p>NMRalter8r was began during my honours projuct where I was trying to remove the effects of dilution in NMR urine spectra. Urine concentrations are highly variable based on a number of factors such as food and water intake, lifestyle and behaviour and this variation interferes with the multivariate statistics used to analyse NMR spectra. Therefore the goal of NMRalter8r is to calculate the signal to noise of the spectra and aim to make this constant across all samples acquired. This is achieved through automation of the NMR and on the fly calculations between an experiment with a small number of scans and an experiment with the altered number of scans.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the released version of NMRadjustr from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
+<!-- You can install the released version of NMRalter8r from [CRAN](https://CRAN.R-project.org) with:-->
+<!--``` r-->
+<!--install.packages("NMRalter8r")-->
+<!--```-->
+<!--And-->
+<p>To installthe development version of NMRalter8r, use the code below to access it from <a href="https://github.com/">GitHub</a>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"NMRadjustr"</span><span class="op">)</span></code></pre></div>
-<p>And the development version from <a href="https://github.com/">GitHub</a> with:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"kylebario/NMRadjustr"</span><span class="op">)</span></code></pre></div>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"kylebario/NMRalter8r"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="example" class="section level2">
+<div id="standard-pipeline" class="section level2">
 <h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
-<p>This is a basic example which shows you how to solve a common problem:</p>
+<a href="#standard-pipeline" class="anchor"></a>Standard Pipeline</h2>
+<p>This is the intended pipeline for any altered number of scans calculations:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">NMRalter8r</span><span class="op">)</span>
+<span class="fu"><a href="reference/readin.html">readin</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">'extdata/15'</span>, package <span class="op">=</span> <span class="st">'NMRalter8r'</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">p</span>,<span class="va">x</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">'l'</span>, col<span class="op">=</span><span class="st">'red'</span>, main <span class="op">=</span> <span class="st">"Preprocessed &amp; Non-Preprocessed NMR Spectrum"</span>, xlab <span class="op">=</span> <span class="st">'Chemical Shift (ppm)'</span>, ylab <span class="op">=</span> <span class="st">'Intensity'</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"topleft"</span>, legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Non-Processed"</span>, <span class="st">"Processed"</span><span class="op">)</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<span class="fu"><a href="reference/pproc.html">pproc</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">p</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="va">p</span>,<span class="va">x</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">'l'</span>, col<span class="op">=</span><span class="st">'blue'</span><span class="op">)</span></code></pre></div>
+<p><img src="reference/figures/README-example-1.png" width="100%"></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">NMRadjustr</span><span class="op">)</span>
-<span class="co">## basic example code</span></code></pre></div>
-<p>What is special about using <code>README.Rmd</code> instead of just <code>README.md</code>? You can include R chunks like so:</p>
+<code class="sourceCode R"><span class="va">cr</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/crea.html">crea</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">p</span>, <span class="va">n</span>, c3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">3.1</span><span class="op">)</span>, c4 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">4.1</span><span class="op">)</span><span class="op">)</span>
+<span class="va">ans</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/alter8r.html">alter8r</a></span><span class="op">(</span>sig <span class="op">=</span> <span class="va">cr</span>, noi <span class="op">=</span> <span class="va">n</span>, goal <span class="op">=</span> <span class="fl">40000</span>, ns <span class="op">=</span> <span class="va">m</span><span class="op">$</span><span class="va">a_NS</span>, r2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">512</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="va">ans</span><span class="op">)</span>
+<span class="co">#&gt; 8</span></code></pre></div>
+</div>
+<div id="features" class="section level2">
+<h2 class="hasAnchor">
+<a href="#features" class="anchor"></a>Features</h2>
+<p>NMRalter8r is equipped with a range of preprocessing tools. A common problem with NMR spectra acquired with a small number of scans is that the processing done by Topspin will flip them the wrong way because the water peak is so much larger than the other peaks. NMRalter8r contains a function that checks and corrects for this:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">cars</span><span class="op">)</span>
-<span class="co">#&gt;      speed           dist       </span>
-<span class="co">#&gt;  Min.   : 4.0   Min.   :  2.00  </span>
-<span class="co">#&gt;  1st Qu.:12.0   1st Qu.: 26.00  </span>
-<span class="co">#&gt;  Median :15.0   Median : 36.00  </span>
-<span class="co">#&gt;  Mean   :15.4   Mean   : 42.98  </span>
-<span class="co">#&gt;  3rd Qu.:19.0   3rd Qu.: 56.00  </span>
-<span class="co">#&gt;  Max.   :25.0   Max.   :120.00</span></code></pre></div>
-<p>You’ll still need to render <code>README.Rmd</code> regularly, to keep <code>README.md</code> up-to-date. <code><a href="https://devtools.r-lib.org//reference/build_rmd.html">devtools::build_readme()</a></code> is handy for this. You could also use GitHub Actions to re-render <code>README.Rmd</code> every time you push. An example workflow can be found here: <a href="https://github.com/r-lib/actions/tree/master/examples" class="uri">https://github.com/r-lib/actions/tree/master/examples</a>.</p>
-<p>You can also embed plots, for example:</p>
-<p><img src="reference/figures/README-pressure-1.png" width="100%"></p>
-<p>In that case, don’t forget to commit and push the resulting figure files, so they display on GitHub and CRAN.</p>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">NMRalter8r</span><span class="op">)</span>
+<span class="fu"><a href="reference/readin.html">readin</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">'extdata/4'</span>, package <span class="op">=</span> <span class="st">'NMRalter8r'</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">p</span>, <span class="va">x</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">'l'</span>, col<span class="op">=</span><span class="st">'red'</span>, main <span class="op">=</span> <span class="st">"Disorientated NMR Spectrum"</span>, xlab <span class="op">=</span> <span class="st">'Chemical Shift (ppm)'</span>, ylab <span class="op">=</span> <span class="st">'Intensity'</span><span class="op">)</span>
+<span class="va">xf</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/flip_.html">flip_</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">p</span>, sh <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">3.1</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">p</span>, <span class="va">xf</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">'l'</span>, col<span class="op">=</span><span class="st">'blue'</span>, main <span class="op">=</span> <span class="st">"Orientated NMR Spectrum"</span>, xlab <span class="op">=</span> <span class="st">'Chemical Shift (ppm)'</span>, ylab <span class="op">=</span> <span class="st">'Intensity'</span><span class="op">)</span></code></pre></div>
+<p><img src="reference/figures/README-flip-1.png" width="100%"></p>
 </div>
 </div>
   </div>
@@ -112,7 +123,8 @@
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Kyle Bario <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/YOUR-ORCID-ID" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Kyle Bario <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/https://orcid.org/0000-0003-3781-8220" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Torben Kimhofer <br><small class="roles"> Author, contributor </small> <a href="https://orcid.org/https://orcid.org/0000-0001-7158-9930" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
 
@@ -121,7 +133,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Kyle Bario.</p>
+  <p>Developed by Kyle Bario, Torben Kimhofer.</p>
 </div>
 
 <div class="pkgdown">

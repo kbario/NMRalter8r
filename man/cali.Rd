@@ -25,6 +25,14 @@ It then adds and subtracts the appropriate amount of values on either end of the
 readin(path = system.file('extdata/15', package = 'NMRadjustr'))
 xc <- cali(x, p)
 }
+\seealso{
+Other {preproc}: 
+\code{\link{bl_}()},
+\code{\link{flip_}()},
+\code{\link{pproc}()},
+\code{\link{readin}()}
+}
 \author{
 Kyle Bario \email{kylebario1@gmail.com}
 }
+\concept{{preproc}}

@@ -13,7 +13,7 @@
 #'
 #' @return An estimated value for the creatinine area
 #' @export
-#'
+#' @family {estimation}
 #' @author Kyle Bario \email{kylebario1@@gmail.com}
 #'
 #' @examples

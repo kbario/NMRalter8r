@@ -34,6 +34,17 @@ cr <- crea(x, p, n)
 ns <- alter8r(cr, n, 40000, m$a_NS, c(4,512,2))
 cat(ns)
 }
+\seealso{
+Other {estimation}: 
+\code{\link{citra}()},
+\code{\link{crea}()},
+\code{\link{get_idx}()},
+\code{\link{noi_}()},
+\code{\link{roundr}()},
+\code{\link{shift_pickr}()},
+\code{\link{tota}()}
+}
 \author{
 Kyle Bario \email{kylebario1@gmail.com}
 }
+\concept{{estimation}}

@@ -11,7 +11,7 @@
 #' @export
 #'
 #' @author Kyle Bario \email{kylebario1@@gmail.com}
-#'
+#' @family {preproc}
 #' @examples
 #' readin(path = system.file('extdata/15', package = 'NMRadjustr'))
 #' xc <- cali(x, p)

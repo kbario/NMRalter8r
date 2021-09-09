@@ -33,6 +33,17 @@ From there, the value of pm is added and subtracted from the ppm where the maxim
 data(x,p)
 idx <- shift_pickr(x, p, sh = c(5,5.5), pm = 0.01)
 }
+\seealso{
+Other {estimation}: 
+\code{\link{alter8r}()},
+\code{\link{citra}()},
+\code{\link{crea}()},
+\code{\link{get_idx}()},
+\code{\link{noi_}()},
+\code{\link{roundr}()},
+\code{\link{tota}()}
+}
 \author{
 Kyle Bario \email{kylebario1@gmail.com}
 }
+\concept{{estimation}}

@@ -1,65 +1,76 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# NMRadjustr
+# NMRalter8r
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of NMRadjustr is to allow acquisition of almost completely
-normalised NMR spectra straight of the spectroscope. By adjusting the
-number of scans based on the sample concentration, you can reduce the
-influence noise has on the data analysis later on down the pipeline
-which creates more robust and accurate results
+NMRalter8r was began during my honours projuct where I was trying to
+remove the effects of dilution in NMR urine spectra. Urine
+concentrations are highly variable based on a number of factors such as
+food and water intake, lifestyle and behaviour and this variation
+interferes with the multivariate statistics used to analyse NMR spectra.
+Therefore the goal of NMRalter8r is to calculate the signal to noise of
+the spectra and aim to make this constant across all samples acquired.
+This is achieved through automation of the NMR and on the fly
+calculations between an experiment with a small number of scans and an
+experiment with the altered number of scans.
 
 ## Installation
 
-You can install the released version of NMRadjustr from
-[CRAN](https://CRAN.R-project.org) with:
+<!-- You can install the released version of NMRalter8r from [CRAN](https://CRAN.R-project.org) with:-->
+<!--``` r-->
+<!--install.packages("NMRalter8r")-->
+<!--```-->
+<!--And-->
 
-``` r
-install.packages("NMRadjustr")
-```
-
-And the development version from [GitHub](https://github.com/) with:
+To installthe development version of NMRalter8r, use the code below to
+access it from [GitHub](https://github.com/):
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("kylebario/NMRadjustr")
+devtools::install_github("kylebario/NMRalter8r")
 ```
 
-## Example
+## Standard Pipeline
 
-This is a basic example which shows you how to solve a common problem:
+This is the intended pipeline for any altered number of scans
+calculations:
 
 ``` r
-library(NMRadjustr)
-## basic example code
+library(NMRalter8r)
+readin(path = system.file('extdata/15', package = 'NMRalter8r'))
+plot(p,x, xlim = c(10, -1), type = 'l', col='red', main = "Preprocessed & Non-Preprocessed NMR Spectrum", xlab = 'Chemical Shift (ppm)', ylab = 'Intensity')
+legend("topleft", legend = c("Non-Processed", "Processed"), col = c("red", "blue"), lty = 1)
+pproc(x, p)
+points(p,x, xlim = c(10, -1), type = 'l', col='blue')
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+<img src="man/figures/README-example-1.png" width="100%" />
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+cr <- crea(x, p, n, c3 = c(3,3.1), c4 = c(4,4.1))
+ans <- alter8r(sig = cr, noi = n, goal = 40000, ns = m$a_NS, r2 = c(4, 512, 2))
+cat(ans)
+#> 8
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/master/examples>.
+## Features
 
-You can also embed plots, for example:
+NMRalter8r is equipped with a range of preprocessing tools. A common
+problem with NMR spectra acquired with a small number of scans is that
+the processing done by Topspin will flip them the wrong way because the
+water peak is so much larger than the other peaks. NMRalter8r contains a
+function that checks and corrects for this:
 
-<img src="man/figures/README-pressure-1.png" width="100%" />
+``` r
+library(NMRalter8r)
+readin(path = system.file('extdata/4', package = 'NMRalter8r'))
+par(mfrow = c(1,2))
+plot(p, x, xlim = c(10, -1), type = 'l', col='red', main = "Disorientated NMR Spectrum", xlab = 'Chemical Shift (ppm)', ylab = 'Intensity')
+xf <- flip_(x, p, sh = c(3,3.1))
+plot(p, xf, xlim = c(10, -1), type = 'l', col='blue', main = "Orientated NMR Spectrum", xlab = 'Chemical Shift (ppm)', ylab = 'Intensity')
+```
 
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+<img src="man/figures/README-flip-1.png" width="100%" />

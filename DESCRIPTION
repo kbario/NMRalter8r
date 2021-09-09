@@ -1,12 +1,7 @@
 Package: NMRalter8r
 Title: Adjusts the Number of Scans an NMR Performs Based on the Concentration of a Sample
 Version: 0.0.0.9000
-Authors@R: 
-    person(given = "Kyle",
-           family = "Bario",
-           role = c("aut", "cre"),
-           email = "kylebario1@gmail.com",
-           comment = c(ORCID = "https://orcid.org/0000-0003-3781-8220"))
+Authors@R: c(person(given = "Kyle", family = "Bario", email = "kylebario@gmail.com", role = c("aut", "cre"), comment = c(ORCID = "https://orcid.org/0000-0003-3781-8220")), person(given = "Torben", family = "Kimhofer", email = "torben.kimhofer@murdoch.edu.au", role= c("aut", "ctb"), comment = c(ORCID = "https://orcid.org/0000-0001-7158-9930")))
 Description: Variable sample dilutions in NMR spectroscopy makes spectral comparison tricky. By adjusting the number of scans performed by an NMR based on the dilution of the sample can account for these dilution effects and make the data analysis more robust and accurate.
 License: MIT + file LICENSE
 Encoding: UTF-8

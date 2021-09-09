@@ -31,6 +31,17 @@ Finally the number in the array closest to n is returned as the 'rounded' value.
 \examples{
 ns <- roundr(n = 37, r2 = c(4,256,4))
 }
+\seealso{
+Other {estimation}: 
+\code{\link{alter8r}()},
+\code{\link{citra}()},
+\code{\link{crea}()},
+\code{\link{get_idx}()},
+\code{\link{noi_}()},
+\code{\link{shift_pickr}()},
+\code{\link{tota}()}
+}
 \author{
 Kyle Bario \email{kylebario1@gmail.com}
 }
+\concept{{estimation}}

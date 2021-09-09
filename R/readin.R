@@ -7,9 +7,10 @@
 #' 2. **p**: The column-matched ppm array of the x variable
 #' 3. **m**: The spectrometer metadata as extracted from the \emph{acqus} file, row-matched to x
 #' @export
+#' @family {preproc}
 #' @author Torben Kimhofer \email{torben.kimhofer@@murdoch.edu.au}
 #' @examples
-#' readin(path = system.file('extdata/15', package = 'NMRadjustr'))
+#' readin(path = system.file('extdata/15', package = 'NMRalter8r'))
 #' @section
 
 readin <- function(path) {

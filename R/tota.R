@@ -12,7 +12,7 @@
 #'
 #' @return A value of the total area estimation
 #' @export
-#'
+#' @family {estimation}
 #' @author Kyle Bario \email{kylebario1@@gmail.com}
 #'
 #' @examples

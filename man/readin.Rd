@@ -28,8 +28,16 @@ NA
 }
 
 \examples{
-readin(path = system.file('extdata/15', package = 'NMRadjustr'))
+readin(path = system.file('extdata/15', package = 'NMRalter8r'))
+}
+\seealso{
+Other {preproc}: 
+\code{\link{bl_}()},
+\code{\link{cali}()},
+\code{\link{flip_}()},
+\code{\link{pproc}()}
 }
 \author{
 Torben Kimhofer \email{torben.kimhofer@murdoch.edu.au}
 }
+\concept{{preproc}}

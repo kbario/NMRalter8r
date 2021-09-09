@@ -9,7 +9,7 @@
 #' @return an x with a corrected baseline
 #' @importFrom ptw asysm
 #' @export
-#'
+#' @family {preproc}
 #' @author Kyle Bario \email{kylebario1@@gmail.com}
 #'
 #' @examples

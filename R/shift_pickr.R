@@ -13,7 +13,7 @@
 #'
 #' @return An array of values mapped to defined peak
 #' @export
-#'
+#' @family {estimation}
 #' @author Kyle Bario \email{kylebario1@@gmail.com}
 #'
 #' @examples

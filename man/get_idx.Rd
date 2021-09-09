@@ -26,8 +26,19 @@ From there, \code{get_idx()} asks what ppm values are both above the lower ppm o
 data(p)
 idx <- get_idx(r = c(3,3.1), p)
 }
+\seealso{
+Other {estimation}: 
+\code{\link{alter8r}()},
+\code{\link{citra}()},
+\code{\link{crea}()},
+\code{\link{noi_}()},
+\code{\link{roundr}()},
+\code{\link{shift_pickr}()},
+\code{\link{tota}()}
+}
 \author{
 Torben Kimhofer \email{torben.kimhofer@murdoch.edu.au}
 
 Kyle Bario \email{kylebario1@gmail.com}
 }
+\concept{{estimation}}

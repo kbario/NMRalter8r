@@ -23,6 +23,14 @@ This is achieved by calculating the trend of the spectrum using \code{ptw::asysm
 readin(path = system.file('extdata/15', package = 'NMRadjustr'))
 xb <- bl_(x)
 }
+\seealso{
+Other {preproc}: 
+\code{\link{cali}()},
+\code{\link{flip_}()},
+\code{\link{pproc}()},
+\code{\link{readin}()}
+}
 \author{
 Kyle Bario \email{kylebario1@gmail.com}
 }
+\concept{{preproc}}

@@ -10,7 +10,7 @@
 #'
 #' @return Returns a spectrum (array) with the correct orientation
 #' @export
-#'
+#' @family {preproc}
 #' @author Kyle Bario \email{kylebario1@@gmail.com}
 #'
 #' @examples

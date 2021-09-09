@@ -35,6 +35,14 @@ Finally, the processed x spectrum, matched ppm variable, original spectrum and n
 readin(path = system.file('extdata/15', package = 'NMRadjustr'))
 pproc(x, p)
 }
+\seealso{
+Other {preproc}: 
+\code{\link{bl_}()},
+\code{\link{cali}()},
+\code{\link{flip_}()},
+\code{\link{readin}()}
+}
 \author{
 Kyle Bario \email{kylebario1@gmail.com}
 }
+\concept{{preproc}}

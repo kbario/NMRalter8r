@@ -17,7 +17,7 @@
 #' 3. **o**: the original X spectra that was input into the function
 #' 4. **n**: the estimated value of noise for this spectrum
 #' @export
-#'
+#' @family {preproc}
 #' @author Kyle Bario \email{kylebario1@@gmail.com}
 #'
 #' @examples

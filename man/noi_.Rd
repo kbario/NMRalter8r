@@ -29,7 +29,17 @@ n <- noi_(x, p)
 }
 \seealso{
 The methods paper by Torgrip et al. (2008): \url{http://dx.doi.org/10.1007/s11306-007-0102-2}
+
+Other {estimation}: 
+\code{\link{alter8r}()},
+\code{\link{citra}()},
+\code{\link{crea}()},
+\code{\link{get_idx}()},
+\code{\link{roundr}()},
+\code{\link{shift_pickr}()},
+\code{\link{tota}()}
 }
 \author{
 Kyle Bario \email{kylebario1@gmail.com}
 }
+\concept{{estimation}}
