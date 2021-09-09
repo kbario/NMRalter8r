@@ -11,10 +11,10 @@ Urine concentrations are highly variable based on a number of factors
 such as food and water intake, lifestyle and behaviour, and this
 variation interferes with the multivariate statistics used to analyse
 NMR spectra. Therefore the goal of NMRalter8r is to calculate the signal
-to noise of the spectra and aim to make this constant across all samples
-acquired which would remove dilution effects. This is achieved through
-automating the NMR and calculating on the fly the number of scans needed
-to remove the effects of dilution.
+to noise of the spectra and aims to make this constant across all
+samples acquired which would remove dilution effects. This is achieved
+through automating the NMR and calculating on the fly the number of
+scans needed to remove the effects of dilution.
 
 <!-- badges: end -->
 
@@ -27,12 +27,25 @@ to remove the effects of dilution.
 <!--And-->
 
 Currently NMRalter8r is only available on [GitHub](https://github.com/).
-The code to install can be seen below
+The code to install can be found below.
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("kylebario/NMRalter8r")
 ```
+
+## The Whole Game
+
+NMRalter8r is not intended to be used by anyone but the NMR. Ideally, it
+is installed on the computer of the NMR and then the Jython script that
+calls on NMRalter8r is extracted from it and saved in Topspin. From
+there, the file can automate the NMR, controlling everything from the
+type of experiment performed to the holder position of the sample. This
+Jython script is what talks to NMRalter8r and what catches the altered
+number of scans once it is calculated. But there is an intended pipeline
+to be followed when setting up the script for when Jython parses
+NMRalter8r the small scans which can be seen below. Feel free to alter
+it how you wish.
 
 ## Standard Pipeline
 

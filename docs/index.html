@@ -63,7 +63,7 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#nmralter8r" class="anchor"></a>NMRalter8r</h1></div>
 <!-- badges: start -->
-<p>NMRalter8r began as part of my honours project where I was trying to remove the effects of dilution in NMR spectra, especially in urine. Urine concentrations are highly variable based on a number of factors such as food and water intake, lifestyle and behaviour, and this variation interferes with the multivariate statistics used to analyse NMR spectra. Therefore the goal of NMRalter8r is to calculate the signal to noise of the spectra and aim to make this constant across all samples acquired which would remove dilution effects. This is achieved through automating the NMR and calculating on the fly the number of scans needed to remove the effects of dilution.</p>
+<p>NMRalter8r began as part of my honours project where I was trying to remove the effects of dilution in NMR spectra, especially in urine. Urine concentrations are highly variable based on a number of factors such as food and water intake, lifestyle and behaviour, and this variation interferes with the multivariate statistics used to analyse NMR spectra. Therefore the goal of NMRalter8r is to calculate the signal to noise of the spectra and aims to make this constant across all samples acquired which would remove dilution effects. This is achieved through automating the NMR and calculating on the fly the number of scans needed to remove the effects of dilution.</p>
 <!-- badges: end -->
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -73,10 +73,15 @@
 <!--install.packages("NMRalter8r")-->
 <!--```-->
 <!--And-->
-<p>Currently NMRalter8r is only available on <a href="https://github.com/">GitHub</a>. The code to install can be seen below</p>
+<p>Currently NMRalter8r is only available on <a href="https://github.com/">GitHub</a>. The code to install can be found below.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"kylebario/NMRalter8r"</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="the-whole-game" class="section level2">
+<h2 class="hasAnchor">
+<a href="#the-whole-game" class="anchor"></a>The Whole Game</h2>
+<p>NMRalter8r is not intended to be used by anyone but the NMR. Ideally, it is installed on the computer of the NMR and then the Jython script that calls on NMRalter8r is extracted from it and saved in Topspin. From there, the file can automate the NMR, controlling everything from the type of experiment performed to the holder position of the sample. This Jython script is what talks to NMRalter8r and what catches the altered number of scans once it is calculated. But there is an intended pipeline to be followed when setting up the script for when Jython parses NMRalter8r the small scans which can be seen below. Feel free to alter it how you wish.</p>
 </div>
 <div id="standard-pipeline" class="section level2">
 <h2 class="hasAnchor">
